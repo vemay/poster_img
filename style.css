@@ -1,0 +1,39 @@
+body,ul,li,h1,h2,h3,h4,div,p,img{
+    margin:0;padding:0;
+}
+li {list-style: none;}
+img {border:none}
+a {text-decoration:none;}
+
+/*布局*/
+body {
+    padding:50px;
+}
+.main {
+    width:800px;
+    height:270px;
+    background: #999;
+    position:relative;
+}
+.main a, .main img {
+    display: block;
+}
+.main .btn {
+    position:absolute;
+    top:0;
+}
+.main .left_btn {
+    left:0;
+}
+.main .right_btn {
+    right:0;
+}
+.list {
+    width:800px;
+    height:270px;
+}
+.list .item {
+    position:absolute;
+    top:0;
+    left:100px;
+}
