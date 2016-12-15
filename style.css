@@ -19,14 +19,21 @@ body {
     display: block;
 }
 .main .btn {
+    width:80px;
+    height:270px;
+    background: #f3f3f3;
+    cursor:pointer;
     position:absolute;
     top:0;
+    z-index: 10;
 }
 .main .left_btn {
     left:0;
+    background:url("images/btn_l.png") no-repeat center center;
 }
 .main .right_btn {
     right:0;
+    background:url("images/btn_r.png") no-repeat center center;
 }
 .list {
     width:800px;
@@ -35,5 +42,6 @@ body {
 .list .item {
     position:absolute;
     top:0;
-    left:100px;
+    left:0;
+    z-index: 1;
 }
