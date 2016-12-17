@@ -22,7 +22,9 @@
             "imgHeight":270,/*广告图第一帧高度*/
             "verticalAlign":"middle",/*垂直排列样式  top middle bottom*/
             "scale":0.9,/*图片层叠缩放比例*/
-            "speed":500/*切换速度*/
+            "speed":500,/*切换速度*/
+            "autoplay":false,/*是否自动播放*/
+            "delay":3000/*自动播放间隔时间*/
         };
 
         /*将人工定义的参数与默认参数合并*/
@@ -45,6 +47,16 @@
                 self.animateFlag = false;
             }
         });
+
+        /*是否自动播放*/
+        if (this.setting.autoplay) {
+            this.autoPlay();
+            this.poster.hover(function(){
+                clearInterval(self.timer);
+            },function() {
+                self.autoPlay();
+            });
+        }
 
     };
     Carousel.prototype = {
@@ -181,7 +193,7 @@
                          "top": top,
                          "opacity": opacity,
                          "zIndex": zIndex
-                     },function () {
+                     },_this_.setting.speed,function () {
                          _this_.animateFlag = true;
                      });
 
@@ -209,7 +221,7 @@
                          "top": top,
                          "opacity": opacity,
                          // "zIndex": zIndex
-                     },function () {
+                     },_this_.setting.speed,function () {
                          _this_.animateFlag = true;
                      });
                  });
@@ -217,7 +229,13 @@
                      $(this).css("zIndex",zIndexArr[i]);
                  });
              }
-         }
+         },
+        autoPlay: function () {
+            var self = this;
+            // clearInterval(this.timer);
+            this.timer = setInterval(function(){self.nextBtn.click();},self.setting.delay);
+
+        }
     };
     Carousel.init = function (posters) {
         posters.each(function () {
