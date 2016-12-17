@@ -79,42 +79,40 @@
                     gap          = firstLeft/sliceSize;
 
                 rightSlice.each(function(i) {
-
-                        rw= rw*self.setting.scale;
-                        rh= rh*self.setting.scale;
+                        rw  *= self.setting.scale;
+                        rh  *= self.setting.scale;
                         var rLeft = firstLeft + self.setting.imgWidth+(i+1)*gap - rw,
-                            rTop  = (self.setting.height-rh)/2,
-                            rOpacity = 1/(i+1);
+                            rOpacity = 1/(i+2);
                         $(this).css({
                                 "width":rw,
                                 "height":rh,
                                 "opacity":rOpacity,
                                 "left":rLeft,
-                                "top":rTop,
+                                "top":self.verticalStyle(rh),
                                 "z-index":sliceSize - i
                         });
                     });
-                /*左侧剩余帧*/
 
+                /*左侧剩余帧*/
                var leftSlice   = this.sliceItems.slice(sliceSize),
                    /*左侧第一帧的属性等于右侧最后一帧*/
                    lw           = rightSlice.last().width(),
                    lh           = rightSlice.last().height();
 
-               leftSlice.each(function (i,ele) {
-                   var lOpacity = 1/(sliceSize-i),
-                       lTop     = (self.setting.height-lh)/2;
+               leftSlice.each(function (i) {
+                   var lOpacity = 1/(sliceSize-i+1);
                    $(this).css({
                        "width":lw,
                        "height":lh,
                        "left":i*gap,
                        "opacity":lOpacity,
-                       "top":lTop,
+                       "top":self.verticalStyle(lh),
                        "z-index":i+1
                    });
                    lw   /= self.setting.scale;
                    lh   /= self.setting.scale;
                });
+
              },
 
         /*获取人工定义的属性参数*/
@@ -124,13 +122,22 @@
                     return $.parseJSON(setting);
                 }
             },
-            /*逆序*/
-            reverseItems: function (items) {
-                var size = items.size();
-                items.each(function (i,ele) {
-                    $(this).index(size- i -1) ;
-                });
-
+            /*设置垂直对齐显示方式*/
+            verticalStyle:function (offsetH){
+                switch (this.setting.verticalAlign) {
+                    case "middle":
+                        return (this.setting.height-offsetH)/2;
+                        break;
+                    case "top":
+                        return 0;
+                        break;
+                    case "bottom":
+                        return this.setting.height-offsetH;
+                        break;
+                    default:
+                        return (this.setting.height-offsetH)/2;
+                        break;
+                }
             }
     };
     Carousel.init = function (posters) {
