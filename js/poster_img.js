@@ -10,6 +10,13 @@
         this.prevBtn = this.poster.find(".left_btn").eq(0);
         this.nextBtn = this.poster.find(".right_btn").eq(0);
         this.items = this.list.find("li");
+
+        /*偶数帧*/
+        if (this.items.size()%2 == 0) {
+            this.list.append(this.items.eq(0).clone(true));
+            this.items = this.list.find("li");
+        }
+
         this.firstItem = this.items.eq(0);
         this.lastItem   = this.items.last();
         this.sliceItems = this.items.slice(1);
@@ -26,9 +33,9 @@
             "autoplay":false,/*是否自动播放*/
             "delay":3000/*自动播放间隔时间*/
         };
-
         /*将人工定义的参数与默认参数合并*/
         $.extend(this.setting,this.getSetting());
+        console.log(this.setting);
         this.setAttr();
         this.setSliceItems();
 
@@ -95,7 +102,7 @@
                 "height":this.setting.height,
                 "top":0,
                 "left":w,
-                "z-index":Math.ceil(this.items.size()/2)
+                "zIndex":Math.ceil(this.items.size()/2)
             });
         },
 
@@ -184,15 +191,15 @@
                          left = prev.css("left"),
                          top = prev.css("top"),
                          opacity = prev.css("opacity"),
-                         zIndex = prev.css("z-index");
+                         zIndex = prev.css("zIndex");
                      zIndexArr.push(zIndex);
                      self.animate({
                          "width": width,
                          "height": height,
                          "left": left,
                          "top": top,
-                         "opacity": opacity,
-                         "zIndex": zIndex
+                         "opacity": opacity
+                         // "zIndex": zIndex
                      },_this_.setting.speed,function () {
                          _this_.animateFlag = true;
                      });
@@ -212,7 +219,7 @@
                          left = next.css("left"),
                          top = next.css("top"),
                          opacity = next.css("opacity"),
-                         zIndex = next.css("z-index");
+                         zIndex = next.css("zIndex");
                      zIndexArr.push(zIndex);
                      self.animate({
                          "width": width,
