@@ -23,6 +23,7 @@ body {
     height:270px;
     background: #f3f3f3;
     cursor:pointer;
+    opacity:0.8;
     position:absolute;
     top:0;
     z-index: 10;
@@ -44,4 +45,7 @@ body {
     top:0;
     left:0;
     z-index: 1;
+}
+.list .item img {
+    width: 100%;
 }
