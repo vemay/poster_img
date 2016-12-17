@@ -226,7 +226,7 @@
                          "height": height,
                          "left": left,
                          "top": top,
-                         "opacity": opacity,
+                         "opacity": opacity
                          // "zIndex": zIndex
                      },_this_.setting.speed,function () {
                          _this_.animateFlag = true;

@@ -33,32 +33,14 @@
         </ul>
         <div class="btn right_btn"></div>
     </div>
-    <div class="j_poster main" data-setting='{
-        "width":900,
-        "height":270,
-        "imgWidht":640,
-        "imgHeight":270,
-        "verticalAlign":"middle",
-        "scale":0.8,
-        "speed":300,
-        "autoplay":"true",
-        "delay":3000
-    }'>
-        <div class="btn left_btn"></div>
-        <ul class="list">
-            <li class="item"><a href=""><img src="images/1.jpg" alt=""></a></li>
-            <li class="item"><a href=""><img src="images/2.jpg" alt=""></a></li>
-            <li class="item"><a href=""><img src="images/3.jpg" alt=""></a></li>
-            <li class="item"><a href=""><img src="images/4.jpg" alt=""></a></li>
 
-        </ul>
-        <div class="btn right_btn"></div>
-    </div>
 
 
     <script>
 //        var carousel = new Carousel ($(".j_poster").eq(0));
+        $(function(){
             Carousel.init($(".j_poster"));
+        });
     </script>
 </body>
 </html>

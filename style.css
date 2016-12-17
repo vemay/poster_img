@@ -37,8 +37,10 @@ body {
 .list {
     width:800px;
     height:270px;
+    overflow: hidden;
 }
 .list .item {
+    width: 640px;
     position:absolute;
     top:0;
     left:0;
