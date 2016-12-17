@@ -13,7 +13,7 @@
         this.firstItem = this.items.eq(0);
         this.lastItem   = this.items.last();
         this.sliceItems = this.items.slice(1);
-
+        this.animateFlag =true;
 
         this.setting = {
             "width":1000,/*广告盒子宽度*/
@@ -33,10 +33,17 @@
         /*旋转运动*/
         /*向左*/
         this.nextBtn.click(function() {
-            self.moveTo("left");
+            if (self.animateFlag){
+                self.moveTo("left");
+                self.animateFlag = false;
+            }
+
         });
         this.prevBtn.click(function () {
-            self.moveTo("right");
+            if (self.animateFlag){
+                self.moveTo("right");
+                self.animateFlag = false;
+            }
         });
 
     };
@@ -174,6 +181,8 @@
                          "top": top,
                          "opacity": opacity,
                          "zIndex": zIndex
+                     },function () {
+                         _this_.animateFlag = true;
                      });
 
                  });
@@ -200,6 +209,8 @@
                          "top": top,
                          "opacity": opacity,
                          // "zIndex": zIndex
+                     },function () {
+                         _this_.animateFlag = true;
                      });
                  });
                  this.items.each(function (i) {
