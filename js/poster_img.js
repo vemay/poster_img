@@ -156,6 +156,7 @@
         moveTo:  function (dir) {
              if (dir == "left") {
                  var _this_ = this;
+                 var zIndexArr = [];
                  this.items.each(function () {
                      var self = $(this);
                      var prev = self.prev().get(0) ? self.prev() : _this_.lastItem,
@@ -165,6 +166,7 @@
                          top = prev.css("top"),
                          opacity = prev.css("opacity"),
                          zIndex = prev.css("z-index");
+                     zIndexArr.push(zIndex);
                      self.animate({
                          "width": width,
                          "height": height,
@@ -175,8 +177,12 @@
                      });
 
                  });
+                 this.items.each(function (i) {
+                     $(this).css("zIndex",zIndexArr[i]);
+                 });
              } else if (dir == "right") {
                  var _this_ = this;
+                 var zIndexArr = [];
                  this.items.each(function () {
                      var self = $(this);
                      var next = self.next().get(0) ? self.next() : _this_.firstItem,
@@ -186,15 +192,18 @@
                          top = next.css("top"),
                          opacity = next.css("opacity"),
                          zIndex = next.css("z-index");
+                     zIndexArr.push(zIndex);
                      self.animate({
                          "width": width,
                          "height": height,
                          "left": left,
                          "top": top,
                          "opacity": opacity,
-                         "zIndex": zIndex
+                         // "zIndex": zIndex
                      });
-
+                 });
+                 this.items.each(function (i) {
+                     $(this).css("zIndex",zIndexArr[i]);
                  });
              }
          }
